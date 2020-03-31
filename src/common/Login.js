@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text,Dimensions, Image,ActivityIndicator, TextInput, AsyncStorage, TouchableOpacity} from 'react-native';
+import {View, Text,Dimensions,Alert, Image,ActivityIndicator, TextInput, AsyncStorage, TouchableOpacity} from 'react-native';
 import { Icon } from '@ant-design/react-native';
 import { Actions } from 'react-native-router-flux';
 import {myFetch} from '../utils'
@@ -26,21 +26,27 @@ export default class Login extends Component {
     login = ()=>{
         // myFetch.get('/topics',{limit:4,user:'sss'})
         //     .then(res=>console.log(res))
-        this.setState({isloading:true})
-        myFetch.post('/login',{
-            username:this.state.username,
-            pwd:this.state.pwd}
-        ).then(res=>{
-            // 根据返回状态进行判断，正确时跳转首页
-            // if(res){
-
-            // }
-            AsyncStorage.setItem('user',JSON.stringify(res.data))
-                .then(()=>{
+        if(this.state.username!=''&&this.state.pwd!=''){
+            this.setState({isloading:true})
+            myFetch.post('/login',{
+                username:this.state.username,
+                pwd:this.state.pwd}
+            ).then(res=>{
+                // 根据返回状态进行判断，正确时跳转首页
+                if(res.data.state!='1'){
                     this.setState({isloading:false})
-                    Actions.homePage();
-                })
-        })
+                    Alert.alert('用户名或密码错误');
+                }else{
+                    AsyncStorage.setItem('user',JSON.stringify(res.data))
+                        .then(()=>{
+                            this.setState({isloading:false})
+                            Actions.homePage();
+                        })
+                }
+            })
+        }else{
+            Alert.alert('不能为空');
+        }
     }
     register=()=>{
       AsyncStorage.setItem('user',true);

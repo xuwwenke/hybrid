@@ -12,6 +12,7 @@ import Login from './src/common/Login';
 import SwiperPage from './src/common/SwiperPage';
 import Publish from './src/userinfor/Publish';
 import Register from './src/common/Register';
+import Demo from './components/Demo';
 
 console.disableYellowBox=true;
 const rootUrl='https://www.fastmock.site/mock/48a66b6b105a9c88c834ce567beb86ec/api'

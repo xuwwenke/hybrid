@@ -104,7 +104,7 @@ export default class Register extends Component {
                         <Icon name="lock" color="red"/>
                         <TextInput 
                             onChangeText={this.pwdRepeathandle}
-                            placeholder="密码" 
+                            placeholder="再次输入密码" 
                             secureTextEntry={true}
                         />
                     </View>

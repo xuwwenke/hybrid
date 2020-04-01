@@ -31,8 +31,7 @@ const data1 = Array.from(new Array(6)).map((_val, i) => {
 });
 
 const options = {
-    title: 'Select Avatar',
-    customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+    title: '上传头像',
     storageOptions: {
       skipBackup: true,
       path: 'images',
